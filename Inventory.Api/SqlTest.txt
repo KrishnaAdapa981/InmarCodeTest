@@ -1,0 +1,68 @@
+1  SELECT
+		* 
+	FROM
+		Customer 
+	WHERE
+		Name LIKE "Joe%"
+		
+2
+	SELECT
+		P.Name
+	FROM
+		OrderProdcut OP
+	Join
+		Order O
+	On
+		OP.OrderId = O.OrderId
+	Join
+		Product P
+	On
+		P.ProductId = Op.ProductId
+	Join	
+		Customer C
+	On
+		C.CustomerId = Order.CustomerId
+	WHERE
+		C.Name == "Joe" AND O.CreatedAt > '2016-11-01'
+		
+3
+	SELECT
+		Sum(P.Price)
+	FROM
+		OrderProdcut OP
+	Join
+		Order O
+	On
+		OP.OrderId = O.OrderId
+	Join
+		Product P
+	On
+		P.ProductId = Op.ProductId
+	Join	
+		Customer C
+	On
+		C.CustomerId = Order.CustomerId
+	WHERE
+		C.Name == "Joe"
+		
+4
+	SELECT
+		C.Name, Count(O.OrderId)
+	FROM
+		OrderProdcut OP
+	Join
+		Order O
+	On
+		OP.OrderId = O.OrderId
+	Join
+		Product P
+	On
+		P.ProductId = Op.ProductId
+	Join	
+		Customer C
+	On
+		C.CustomerId = Order.CustomerId
+	Group BY
+		C.Name
+	Having
+		Count(O.OrderId) > 1
